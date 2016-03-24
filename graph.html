@@ -1,0 +1,97 @@
+	
+
+
+
+
+<!doctype html>
+
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>MKB STATLINE GRAPH</title>
+ <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+ <!-- Load d3.js and c3.js -->
+<script src="d3.min.js" charset="utf-8"></script>
+<script src="c3.min.js"></script>
+
+
+  <!-- Load c3.css -->
+<link href="c3.css" rel="stylesheet" type="text/css">
+<script>
+
+
+
+
+$( document ).ready(function() {
+    drawgraph()
+});
+
+var drawgraph = function(){
+d3.json("data/testdata.json", function(data) {
+	data1 = []
+	for( o in data.value) { 
+
+		dataEntry = data.value[o]
+		// voor 2013
+		if (dataEntry.Perioden == "2013JJ00") {
+			if(dataEntry.Bedrijfsgrootte ==  "101150") {
+				data1.push(dataEntry.WerkzamePersonen_1)
+				// bedrifjsgrootte is 250 of meer
+			} else if (dataEntry.Bedrijfsgrootte == "101380"){
+				data1.push(dataEntry.WerkzamePersonen_1)
+			} 
+
+
+		}
+
+
+	}
+	var chart = c3.generate({
+    data: {
+        // iris data from R
+        columns: [
+            ['data1', data1[0]],
+            ['data2', data1[1]],
+        ],
+        type : 'pie',
+        onclick: function (d, i) { console.log("onclick", d, i); },
+        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+    }
+});
+
+
+
+});
+
+}
+
+
+</script>
+
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+
+	<div id="chart"></div>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+

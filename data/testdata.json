@@ -1,0 +1,169 @@
+{
+  "value": {
+    "225": {
+      "ID": 225,
+      "Bedrijfsgrootte": "100000",
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2011JJ00",
+      "WerkzamePersonen_1": 192.4,
+      "Arbeidsvolume_2": 160.8,
+      "Omzet_3": 23358,
+      "Productiewaarde_4": 21421,
+      "ToegevoegdeWaarde_5": 11093
+    },
+    "226": {
+      "ID": 226,
+      "Bedrijfsgrootte": "100000",
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2012JJ00",
+      "WerkzamePersonen_1": 196.8,
+      "Arbeidsvolume_2": 164.2,
+      "Omzet_3": 23515,
+      "Productiewaarde_4": 21994,
+      "ToegevoegdeWaarde_5": 11505
+    },
+    "227": {
+      "ID": 227,
+      "Bedrijfsgrootte": "100000",
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2013JJ00",
+      "WerkzamePersonen_1": 192.8,
+      "Arbeidsvolume_2": 168.6,
+      "Omzet_3": 23370,
+      "Productiewaarde_4": 22274,
+      "ToegevoegdeWaarde_5": 12005
+    },
+    "507": {
+      "ID": 507,
+      "Bedrijfsgrootte": "101370",
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2011JJ00",
+      "WerkzamePersonen_1": 105,
+      "Arbeidsvolume_2": 81.2,
+      "Omzet_3": 9588,
+      "Productiewaarde_4": 8832,
+      "ToegevoegdeWaarde_5": 4710
+    },
+    "508": {
+      "ID": 508,
+      "Bedrijfsgrootte": "101370",
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2012JJ00",
+      "WerkzamePersonen_1": 110.6,
+      "Arbeidsvolume_2": 86.7,
+      "Omzet_3": 10204,
+      "Productiewaarde_4": 9588,
+      "ToegevoegdeWaarde_5": 5138
+    },
+    "509": {
+      "ID": 509,
+      "Bedrijfsgrootte": "101370",
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2013JJ00",
+      "WerkzamePersonen_1": 100.5,
+      "Arbeidsvolume_2": 84,
+      "Omzet_3": 9114,
+      "Productiewaarde_4": 8721,
+      "ToegevoegdeWaarde_5": 4951
+    },
+    "789": {
+      "ID": 789,
+      "Bedrijfsgrootte": "101380",
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2011JJ00",
+      "WerkzamePersonen_1": 137.6,
+      "Arbeidsvolume_2": 110.3,
+      "Omzet_3": 14342,
+      "Productiewaarde_4": 13319,
+      "ToegevoegdeWaarde_5": 7086
+    },
+    "790": {
+      "ID": 790,
+      "Bedrijfsgrootte": "101380",
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2012JJ00",
+      "WerkzamePersonen_1": 145.7,
+      "Arbeidsvolume_2": 116.8,
+      "Omzet_3": 14987,
+      "Productiewaarde_4": 14131,
+      "ToegevoegdeWaarde_5": 7577
+    },
+    "791": {
+      "ID": 791,
+      "Bedrijfsgrootte": "101380",
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2013JJ00",
+      "WerkzamePersonen_1": 145.4,
+      "Arbeidsvolume_2": 124.7,
+      "Omzet_3": 15127,
+      "Productiewaarde_4": 14524,
+      "ToegevoegdeWaarde_5": 8152
+    },
+    "1071": {
+      "ID": 1071,
+      "Bedrijfsgrootte": "100800",
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2011JJ00",
+      "WerkzamePersonen_1": 32.6,
+      "Arbeidsvolume_2": 29,
+      "Omzet_3": 4753,
+      "Productiewaarde_4": 4487,
+      "ToegevoegdeWaarde_5": 2376
+    },
+    "1072": {
+      "ID": 1072,
+      "Bedrijfsgrootte": "100800",
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2012JJ00",
+      "WerkzamePersonen_1": 35.1,
+      "Arbeidsvolume_2": 30.2,
+      "Omzet_3": 4783,
+      "Productiewaarde_4": 4544,
+      "ToegevoegdeWaarde_5": 2439
+    },
+    "1073": {
+      "ID": 1073,
+      "Bedrijfsgrootte": "100800",
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2013JJ00",
+      "WerkzamePersonen_1": 44.9,
+      "Arbeidsvolume_2": 40.7,
+      "Omzet_3": 6013,
+      "Productiewaarde_4": 5803,
+      "ToegevoegdeWaarde_5": 3202
+    },
+    "1353": {
+      "ID": 1353,
+      "Bedrijfsgrootte": "101150",
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2011JJ00",
+      "WerkzamePersonen_1": 54.8,
+      "Arbeidsvolume_2": 50.6,
+      "Omzet_3": 9016,
+      "Productiewaarde_4": 8101,
+      "ToegevoegdeWaarde_5": 4007
+    },
+    "1354": {
+      "ID": 1354,
+      "Bedrijfsgrootte": "101150",
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2012JJ00",
+      "WerkzamePersonen_1": 51.1,
+      "Arbeidsvolume_2": 47.4,
+      "Omzet_3": 8528,
+      "Productiewaarde_4": 7863,
+      "ToegevoegdeWaarde_5": 3928
+    },
+    "1355": {
+      "ID": 1355,
+      "Bedrijfsgrootte": "101150",
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2013JJ00",
+      "WerkzamePersonen_1": 47.4,
+      "Arbeidsvolume_2": 43.9,
+      "Omzet_3": 8243,
+      "Productiewaarde_4": 7749,
+      "ToegevoegdeWaarde_5": 3853
+    }
+  }
+}
