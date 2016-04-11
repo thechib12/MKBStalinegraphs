@@ -31,299 +31,346 @@
   <script>
 
 
+
   var translationTable = {
 
-    // Werkende personen
-    "100000": "Totaal",
-    "100800": "50 tot 250 werkzame personen",
-    "101150": "250 of meer werkzame personen",
-    "101370": "0 tot 50 werkzame personen",
-    "101380": "0 tot 250 werkzame personen",
-    "k_1WerkzamePersoonOfMinder_2": "1 werkzame persoon of minder",
-    "k_2Tot10WerkzamePersonen_3": "2 tot 10 werkzame personen",
-    "k_10Tot50WerkzamePersonen_4": "10 tot 50 werkzame personen",
-    "k_50Tot250WerkzamePersonen_5": "50 tot 250 werkzame personen",
-    "k_250WerkzamePersonenOfMeer_6": "250 werkzame personen of meer",
-    "totaal": "totaal"
+      // Werkende personen
+      "100000": "Totaal",
+      "100800": "50 tot 250 werkzame personen",
+      "101150": "250 of meer werkzame personen",
+      "101370": "0 tot 50 werkzame personen",
+      "101380": "0 tot 250 werkzame personen",
+      "k_1WerkzamePersoonOfMinder_2": "1 werkzame persoon of minder",
+      "k_2Tot10WerkzamePersonen_3": "2 tot 10 werkzame personen",
+      "k_10Tot50WerkzamePersonen_4": "10 tot 50 werkzame personen",
+      "k_50Tot250WerkzamePersonen_5": "50 tot 250 werkzame personen",
+      "k_250WerkzamePersonenOfMeer_6": "250 werkzame personen of meer",
+      "totaal": "totaal"
 
 
 
-  };
-
-  var dataSet = {}
-
-  //Mogelijkheid om options te kiezen waarop je filtert.
-
-  $( document ).ready(function() {
-    // loadOpheffingenOprichtingen()
-
-
-  });
-
-  // Notes to self:
-  // settings voor periode, grootte van company
-  // lijn grafiek
-  
-  var graphTypeSelect = function(period, companysize, graphData){
-    dataset = [
-    ['x'],
-    ['Oprichtingen'],
-    ['Opheffingen'],
-    ['totaal'],
-
-    ]
-
-
-    if(period == "year"){
-      for(i in graphData){
-        if(i.indexOf("JJ") !== -1 ){
-          dataset[1].push(graphData[i][companysize][0])
-          dataset[2].push(-graphData[i][companysize][1])
-          dataset[3].push(graphData[i][companysize][0] - graphData[i][companysize][1])
-          dataset[0].push(i)
-
-        }
-
-      }
-
-
-    } else {
-      for(i in graphData){
-        if(i.indexOf("JJ") == -1 ){
-          dataset[1].push(graphData[i][companysize][0])
-          dataset[2].push(-graphData[i][companysize][1])
-          // dataset[3].push(graphData[i][companysize][2]) 
-          dataset[3].push(graphData[i][companysize][0] - graphData[i][companysize][1])
-          dataset[0].push(i)
-        }
-      }
-    }
-
-    return dataset   
-
-  }
-  var drawgraph = function(graphData, option, period) {
-    // 1 tot 2
-    if(!option){
-      option = "k_1WerkzamePersoonOfMinder_2"
-      period = "month"
-    }
-
-    dataSetCumulatief =  [['cumulatief'],
-    ['x']]
-
-    data = graphTypeSelect(period, option, graphData)
-    total = 0
-    for (var i = 1; i < data[3].length; i++) {
-      dataSetCumulatief[0].push(parseInt(data[3][i])+parseInt(total))
-      dataSetCumulatief[1].push(data[0][i])
-      total += data[3][i]
     };
 
 
-    var chart = c3.generate({
-      data: {
-        x: "x",
-        columns:data,
-        type: 'bar',
-        types: {
-          totaal : 'line'
-        },
-        colors: {
-          'Oprichtingen': '#00ff00',
-          "Opheffingen": '#ff0000'
+    var sbi = [ 300002, 300006, 300010, 300012, 300014, 300025, 300030, 301000, 301100, 301200, 301700, 302400, 302600, 303400, 303600, 304100, 304300, 304400, 304600, 304800, 305000, 305100, 305400, 305700, 305800, 305900, 306100, 306300, 306400, 306600, 307000, 307100, 307300, 307500, 307600, 307610, 307700, 308100, 308300, 308700, 309000, 309300, 309600, 310000, 311000, 311300, 311400, 312200, 312300, 312500, 312505, 312600, 312800, 313000, 313200, 314000, 314100, 314700, 314900, 315200, 315300, 315600, 315800, 315805, 315900, 316300, 317100, 317105, 317200, 317800, 318600, 318700, 319800, 320000, 320005, 320100, 320300, 320700, 320705, 320800, 321800, 322000, 322200, 322500, 323000, 323200, 323300, 323500, 323700, 323800, 324100, 324600, 324700, 325300, 325500, 325800, 326400, 326700, 327600, 327800, 328100, 328105, 328110, 328200, 328400, 328600, 329100, 329800, 330300, 330400, 330700, 331000, 331200, 331400, 331600, 331900, 332300, 332900, 332905, 332910, 333000, 333300, 333500, 333700, 333900, 334200, 334400, 334600, 334800, 334900, 335200, 335400, 335800, 336000, 336300, 336500, 336600, 337200, 337900, 338100, 338400, 339200, 339205, 339300, 339500, 339900, 340200, 340300, 340600, 340800, 341000, 341200, 341600, 341700, 342400, 342500, 342900, 343100, 343300, 343500, 343900, 344400, 344500, 345700, 346600, 346700, 346800, 347600, 347800, 348000, 348100, 348200, 348400, 348500, 348700, 348800, 349100, 349400, 349700, 349800, 350000, 350100, 350200, 350400, 350600, 350700, 351300, 351600, 351900, 352000, 352400, 353000, 353500, 354200, 354300, 354400, 355300, 356000, 356500, 356900, 357000, 357955, 358000, 359800, 361700, 365700, 366000, 367900, 371200, 371600, 371700, 372200, 373800, 374000, 374600, 377400, 378400, 381600, 382500, 383100, 383200, 383300, 383500, 383700, 384400, 384700, 384900, 384905, 385000, 385200, 385600, 385705, 385800, 386300, 386400, 386600, 386800, 386900, 387400, 388400, 388500, 388700, 389100, 389105, 389200, 389300, 389700, 390100, 390300, 390500, 390600, 391100, 391400, 391600, 391700, 391705, 391800, 392300, 392600, 392700, 393400, 393600, 393700, 393900, 394100, 394200, 394400, 394600, 394800, 395000, 395005, 395100, 395600, 395700, 396000, 396300, 396400, 396500, 397200, 397400, 397900, 398700, 398800, 399400, 399600, 400200, 400300, 401000, 401800, 402000, 402100, 402200, 402400, 403000, 403300, 403400, 403405, 403500, 404200, 404900, 405000, 405400, 405900, 406000, 406300, 406800, 406900, 407900, 408100, 408105, 408200, 408500, 408700, 408800, 409000, 409500, 409700, 409900, 410000, 410200, 410300, 410400, 410900, 411600, 412500, 412700, 412800, 413000, 413500, 413700, 413800, 414100, 414300, 414400, 414600, 414800, 415000, 415100, 415300, 415700, 415900, 416000, 416300, 416500, 416700, 417400, 417500, 417600, 418000, 418800, 419000, 419100, 419200, 419700, 420700, 421000, 422200, 422400, 422500, 422600, 423200, 424000, 425300, 425305, 425400, 425600, 425800, 426200, 426600, 426700, 427200, 428100, 428200, 428300, 429300, 429400, 430600, 430700, 431100, 431200, 434800, 435500, 435600, 435700, 436000, 436200, 437500, 437600, 437900, 438600, 438700, 440000, 440100, 440200, 440400, 440500, 440700, 440900, 441000, 441100]
 
-        },
-        groups: [
-        ['Oprichtingen', 'Opheffingen']
-        ] 
 
-      },
 
-      grid: {
-        y: {
-          lines: [{value:0}]
-        }
-      },
-      axis: {
-        x: {
-            type: 'category' // this needed to load string x value
-          }
-        }
+    var dataSet = {}
+
+    //Mogelijkheid om options te kiezen waarop je filtert.
+
+    $( document ).ready(function() {
+      // loadOpheffingenOprichtingen()
+
+      var output = [];
+
+      $.each(sbi, function(index, value)
+      {
+
+        output.push('<option value="'+ value +'">'+ value +'</option>');
       });
 
-    console.log(dataSetCumulatief)
-    var chart2 = c3.generate({
-      data: {
-        x: 'x',
-        columns:dataSetCumulatief
-      },
+      $('#sbiinput').html(output.join(''));
+    });
 
-      grid: {
-        y: {
-          lines: [{value:0}]
-        }
-      },
 
-      axis: {
-        x: {
-            type: 'category' // this needed to load string x value
+
+    // Notes to self:
+    // settings voor periode, grootte van company
+    // lijn grafiek
+
+    var drawgraph = function(graphData, period) {
+      // 1 tot 2
+      console.log(graphData)
+      dataSetCumulatief =  [['cumulatief'],
+      ['x']]
+      dataset = [
+      ['x'],
+      ['Oprichtingen'],
+      ['Opheffingen'],
+      ['totaal'],
+      ]
+
+
+
+
+
+
+      for(i in graphData){
+        dataset[1].push(graphData[i][0])
+        dataset[2].push(-graphData[i][1])
+        dataset[3].push(graphData[i][0] - graphData[i][1])
+        dataset[0].push(i)
+
+      }
+
+
+      total = 0
+      for (var i = 1; i < dataset[3].length; i++) {
+        dataSetCumulatief[0].push(parseInt(dataset[3][i])+parseInt(total))
+        dataSetCumulatief[1].push(dataset[0][i])
+        total += dataset[3][i]
+      };
+
+
+      chart = c3.generate({
+        data: {
+          x: "x",
+          columns:dataset,
+          type: 'bar',
+          types: {
+            totaal : 'line'
+          },
+          colors: {
+            'Oprichtingen': '#00ff00',
+            "Opheffingen": '#ff0000'
+
+          },
+          groups: [
+          ['Oprichtingen', 'Opheffingen']
+          ] 
+
+        },
+
+        grid: {
+          y: {
+            lines: [{value:0}]
+          }
+        },
+        axis: {
+          x: {
+              type: 'category' // this needed to load string x value
+            }
+          }
+        });
+
+
+       chart2 = c3.generate({
+        data: {
+          x: 'x',
+          columns:dataSetCumulatief
+        },
+
+        grid: {
+          y: {
+            lines: [{value:0}]
           }
         },
 
-        bindto: '#chart2'
-      });
-  }    
+        axis: {
+          x: {
+              type: 'category' // this needed to load string x value
+            }
+          },
+
+          bindto: '#chart2'
+        });
+    }    
 
 
 
-  var loadOpheffingenOprichtingen = function(){
-    resultData = {}
-    $.getJSON("data/testDataOprichtingenGroot.json", function(data) {
-      data = data.value
-      setData(data, function(result){
-        $.getJSON("data/testDataOpheffingenGroot.json", function(data1){
-          setData(data1.value, function(result2){
-            mergeResults(result, result2, function(graphData){
-              dataSet= graphData
-              console.log(graphData)
-              drawgraph(graphData)
+    var loadOpheffingenOprichtingen = function(period, option, sbi){
+      $.getJSON("data/testDataOprichtingenCompleet.json", function(data) {
+        data = data.value
+        setData(data, period, option , sbi, function(result){
+          $.getJSON("data/testDataOpheffingenCompleet.json", function(data1){
+            setData(data1.value, period, option, sbi, function(result2){
+              mergeResults(result, result2, option,  function(graphData){
+                dataSet= graphData
+                console.log(graphData)
+                drawgraph(graphData, period)
+              })
             })
+
+          });
+        })
+      });
+    }
+
+    var loadFusies = function(period, option, sbi){
+      $.getJSON('data/fusiescompleet.json', function(data){
+        data = data.value
+        setData(data, period, option, sbi, function(result){
+          console.log(result)
+          fusieset = ['fusies en overnames']
+          for(period in result){
+            fusieset.push(result[period][option])
+
+          }
+          console.log(fusieset)
+
+          chart.load({
+            columns:[ fusieset
+            ]
           })
 
-        });
+        })
       })
-    });
-  }
+    }
 
 
-  function generatePeriods(year){
-    toyear = 2016
-    periods = []
-    for (var i = year; i <= toyear; i++) {
-      for(var j = 1; j<5; j++){
-        periods.push(String(i)+'KW0'+String(j))
-      }
-    };
-    return periods
-  }
 
-
-  function getDataFromPeriods(data, callback){
-    resultData = {}
-    periods = generatePeriods(2006)
-    for(i in periods){
-      resultDatum = getDataFromPeriod(data, periods[i])
-      console.log(resultDatum)
-      if(resultDatum){
-       resultData[periods[i]] = resultDatum
-     }
-   }     
-
-
-   callback(resultData)
-
- }
-
- options = [ "k_1WerkzamePersoonOfMinder_2", "k_2Tot10WerkzamePersonen_3" , "k_10Tot50WerkzamePersonen_4", "k_50Tot250WerkzamePersonen_5", "k_250WerkzamePersonenOfMeer_6"]
- var getDataFromPeriod = function(data, period){
-  result = {}
-  for(i in data){
-    if(data[i].Perioden == period){
-      for (var j = options.length - 1; j >= 0; j--) {
-        result[options[j]] = parseInt([data[i][options[j]]])
+    function generatePeriods(year){
+      toyear = 2016
+      periods = []
+      for (var i = year; i <= toyear; i++) {
+        for(var j = 1; j<5; j++){
+          periods.push(String(i)+'KW0'+String(j))
+        }
       };
-    }
-  }
-  return result
-}
-
-function setData(data, callback){
-  resultData = {}
-  for(i in data){
-    if(!resultData[data[i].Perioden]){
-      resultData[data[i].Perioden] = getDataFromPeriod(data, data[i].Perioden)
+      return periods
     }
 
-    
-  }
-  callback(resultData)
-}
 
-function mergeResults(oprichtingen, opheffingen, callback){
-  result = {}
-  for(period in oprichtingen){
-    optionData = {}
-    for(option in options){
-      optionData[options[option]] = [oprichtingen[period][options[option]], opheffingen[period][options[option]]]
-      // optionData[options[option]].push(parseInt(oprichtingen[period][options[option]] - opheffingen[period][options[option]]))
+
+
+    options = [ "k_1WerkzamePersoonOfMinder_2", "k_2Tot10WerkzamePersonen_3" , "k_10Tot50WerkzamePersonen_4", "k_50Tot250WerkzamePersonen_5", "k_250WerkzamePersonenOfMeer_6"]
+    var getDataFromPeriod = function(data, period, option){
+      result = {}
+      for(i in data){
+        if(data[i].Perioden == period){
+
+          for (var j = options.length - 1; j >= 0; j--) {
+            if(options[j] == option){
+              result[options[j]] = parseInt([data[i][options[j]]]);
+            }
+          };
+        }
+      }
+      return result
+    }
+
+    var getDataFromPeriod2 = function(data, period, option){
+      result = {}
+      result[option] = parseInt(data[option])
+      return result
+    }
+
+    function setData(data, period, option, sbi, callback){
+      resultData = {}
+      if(period == "year"){
+        for(i in data){
+          if(data[i].BedrijfstakkenBranchesSBI2008 == sbi){
+            if(!resultData[data[i].Perioden] && data[i].Perioden.indexOf('JJ') !== -1){
+              resultData[data[i].Perioden] = getDataFromPeriod2(data[i], data[i].Perioden, option)
+            }
+          }
+        }
+      } else {
+        for(i in data){
+          if(data[i].BedrijfstakkenBranchesSBI2008 == sbi){
+            if(!resultData[data[i].Perioden] && data[i].Perioden.indexOf('JJ')  == -1){
+              resultData[data[i].Perioden] = getDataFromPeriod2(data[i],  data[i].Perioden, option)
+            }
+          }
+        }
+      }
+
+      callback(resultData)
+    }
+
+    function mergeResults(oprichtingen, opheffingen, option, callback){
+      result = {}
+      for(period in oprichtingen){
+        result[period] = [oprichtingen[period][option], opheffingen[period][option]]
+      }
+
+      callback(result)
 
     }
-    
-    result[period] = optionData
-  }
-
-  callback(result)
-
-}
 
 
-$(function() {
-  $("#submit").click( function()
-  {
-   var period = document.getElementById('periode').value
-   var option = document.getElementById('bedrijfsgrootte').value
-   drawgraph(dataSet, option, period)
-   drawgraph2(option, period)
- }
- );
-});
+    $(function() {
+      $("#submit").click( function()
+      {
+       var period = document.getElementById('periode').value
+       var option = document.getElementById('bedrijfsgrootte').value
+       var sbi  = document.getElementById('sbiinput').value
+
+       loadOpheffingenOprichtingen(period, option, sbi)
+     }
+     );
 
 
-</script>
+    });
 
 
-  <!--[if lt IE 9]>
-  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-</head>
+    $(document).ready(function() {
 
-<body>
+      $('#checkfusies').change(function() {
+        if($(this).is(":checked")) {
+           var period = document.getElementById('periode').value
+           var option = document.getElementById('bedrijfsgrootte').value
+           var sbi  = document.getElementById('sbiinput').value
 
-  <select id="bedrijfsgrootte">
-    <option value="k_1WerkzamePersoonOfMinder_2"> 1 werkzame persoon of minder</option>
-    <option value="k_2Tot10WerkzamePersonen_3">2 tot 10 werkzame personen</option>
-    <option value="k_10Tot50WerkzamePersonen_4">10 tot 50 werkzame personen</option>
-    <option value="k_50Tot250WerkzamePersonen_5">50 tot 250 werkzame personen</option>
-    <option value="k_250WerkzamePersonenOfMeer_6">250 werkzame personen of meer</option>
-    <option value="totaal">totaal</option>
-  </select>
+           loadFusies(period, option, sbi)
+         
+        };
+     });
+    });    
 
-  <select id = "periode">
-    <option value="year"> Jaarlijks </option>
-    <option value="maand"> maand</option>
-  </select>
 
-  <button id="submit" type="submit" class="btn btn-primary">Submit</button>
-  <br>
-  <br>
 
-  <div class="row">
-    <div class="col-md-12">
-      <div id="chart"></div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-6">
-      <div class="chart" id="chart2">
+
+
+
+
+
+    </script>
+
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-6">
+        <select id='sbiinput'>
+
+        </select>
+
+        <select id="bedrijfsgrootte">
+          <option value="k_1WerkzamePersoonOfMinder_2"> 1 werkzame persoon of minder</option>
+          <option value="k_2Tot10WerkzamePersonen_3">2 tot 10 werkzame personen</option>
+          <option value="k_10Tot50WerkzamePersonen_4">10 tot 50 werkzame personen</option>
+          <option value="k_50Tot250WerkzamePersonen_5">50 tot 250 werkzame personen</option>
+          <option value="k_250WerkzamePersonenOfMeer_6">250 werkzame personen of meer</option>
+          <option value="totaal">totaal</option>
+        </select>
+
+        <select id = "periode">
+          <option value="year"> Jaarlijks </option>
+          <option value="maand"> maand</option>
+        </select>
+        <input type="checkbox" id='checkfusies' name="fusies" >laad fusies en overnames</input>
+        <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+        
+        <br>
+        <br>
       </div>
     </div>
-  </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div id="chart"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="chart" id="chart2">
+        </div>
+      </div>
+    </div>
 
 
-</body>
-</html>
+  </body>
+  </html>
 
 
 
