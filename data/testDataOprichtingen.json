@@ -1,0 +1,44 @@
+{
+  "value": {
+    "12055": {
+      "ID": 12055,
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2015KW01",
+      "k_1WerkzamePersoonOfMinder_2": "    1415",
+      "k_2Tot10WerkzamePersonen_3": "      85",
+      "k_10Tot50WerkzamePersonen_4": "       5",
+      "k_50Tot250WerkzamePersonen_5": "       0",
+      "k_250WerkzamePersonenOfMeer_6": "       0"
+    },
+    "12056": {
+      "ID": 12056,
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2015KW02",
+      "k_1WerkzamePersoonOfMinder_2": "    1560",
+      "k_2Tot10WerkzamePersonen_3": "     130",
+      "k_10Tot50WerkzamePersonen_4": "       5",
+      "k_50Tot250WerkzamePersonen_5": "       0",
+      "k_250WerkzamePersonenOfMeer_6": "       0"
+    },
+    "12057": {
+      "ID": 12057,
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2015KW03",
+      "k_1WerkzamePersoonOfMinder_2": "    1480",
+      "k_2Tot10WerkzamePersonen_3": "     105",
+      "k_10Tot50WerkzamePersonen_4": "       0",
+      "k_50Tot250WerkzamePersonen_5": "       0",
+      "k_250WerkzamePersonenOfMeer_6": "       0"
+    },
+    "12058": {
+      "ID": 12058,
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2015KW04",
+      "k_1WerkzamePersoonOfMinder_2": "    1305",
+      "k_2Tot10WerkzamePersonen_3": "      90",
+      "k_10Tot50WerkzamePersonen_4": "       0",
+      "k_50Tot250WerkzamePersonen_5": "       0",
+      "k_250WerkzamePersonenOfMeer_6": "       0"
+    }
+  }
+}	

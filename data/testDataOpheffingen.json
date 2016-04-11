@@ -1,0 +1,64 @@
+{
+  "value": {
+    "12055": {
+      "ID": 12055,
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2015KW01",
+      "TotaalOpheffingen_1": "    1160",
+      "k_1WerkzamePersoonOfMinder_2": "     995",
+      "k_2Tot10WerkzamePersonen_3": "     155",
+      "k_10Tot50WerkzamePersonen_4": "      10",
+      "k_50Tot250WerkzamePersonen_5": "       0",
+      "k_250WerkzamePersonenOfMeer_6": "       0",
+      "k_0Tot50WerkzamePersonen_7": "    1155",
+      "k_0Tot250WerkzamePersonen_8": "    1160",
+      "NatuurlijkePersonen_9": "     940",
+      "Rechtspersonen_10": "     220"
+    },
+    "12056": {
+      "ID": 12056,
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2015KW02",
+      "TotaalOpheffingen_1": "     800",
+      "k_1WerkzamePersoonOfMinder_2": "     705",
+      "k_2Tot10WerkzamePersonen_3": "      90",
+      "k_10Tot50WerkzamePersonen_4": "       5",
+      "k_50Tot250WerkzamePersonen_5": "       0",
+      "k_250WerkzamePersonenOfMeer_6": "       0",
+      "k_0Tot50WerkzamePersonen_7": "     800",
+      "k_0Tot250WerkzamePersonen_8": "     800",
+      "NatuurlijkePersonen_9": "     645",
+      "Rechtspersonen_10": "     160"
+    },
+    "12057": {
+      "ID": 12057,
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2015KW03",
+      "TotaalOpheffingen_1": "     770",
+      "k_1WerkzamePersoonOfMinder_2": "     685",
+      "k_2Tot10WerkzamePersonen_3": "      70",
+      "k_10Tot50WerkzamePersonen_4": "      10",
+      "k_50Tot250WerkzamePersonen_5": "       0",
+      "k_250WerkzamePersonenOfMeer_6": "       0",
+      "k_0Tot50WerkzamePersonen_7": "     765",
+      "k_0Tot250WerkzamePersonen_8": "     770",
+      "NatuurlijkePersonen_9": "     540",
+      "Rechtspersonen_10": "     225"
+    },
+    "12058": {
+      "ID": 12058,
+      "BedrijfstakkenBranchesSBI2008": "395000",
+      "Perioden": "2015KW04",
+      "TotaalOpheffingen_1": "     930",
+      "k_1WerkzamePersoonOfMinder_2": "     815",
+      "k_2Tot10WerkzamePersonen_3": "     100",
+      "k_10Tot50WerkzamePersonen_4": "      10",
+      "k_50Tot250WerkzamePersonen_5": "       0",
+      "k_250WerkzamePersonenOfMeer_6": "       0",
+      "k_0Tot50WerkzamePersonen_7": "     925",
+      "k_0Tot250WerkzamePersonen_8": "     930",
+      "NatuurlijkePersonen_9": "     685",
+      "Rechtspersonen_10": "     240"
+    }
+  }
+}
