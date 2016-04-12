@@ -51,27 +51,261 @@
 
     };
 
+  // opties voor conjunctuurdataset
+  var conjunctuurTable = {
+    "productie/bedrijvigheid afgelopen 3 maanden": [
+    "ProductieBedrijvigheidIsToegenomen_1",
+    "ProductieBedrIsGelijkGebleven_2",
+    "ProductieBedrijvigheidIsAfgenomen_3"
+    ],
+    "productie/bedrijvingheid komende 3 maanden": [
+    "ProductieBedrijvigheidZalToenemen_5",
+    "ProductieBedrZalGelijkBlijven_6",
+    "ProductieBedrijvigheidZalAfnemen_7"
+    ],
+    "oordeel productiecapaciteit": [
+    "ProductiecapaciteitIsTeGroot_10",
+    "ProductiecapaciteitIsNormaal_11",
+    "ProductiecapaciteitIsTeKlein_12",
+    "NietVanToepassing_13"
+    ],
+    "bezettingsgraad": [
+    "Bezettingsgraad_9"
+    ],
+    "omzet afgelopen 3 maanden": [
+    "OmzetIsToegenomen_15",
+    "OmzetIsGelijkGebleven_16",
+    "OmzetIsAfgenomen_17"
+    ],
+    "omzet komende 3 maanden": [
+    "OmzetZalToenemen_19",
+    "OmzetZalGelijkBlijven_20",
+    "OmzetZalAfnemen_21"
+    ],
+    "omzet volgend jaar": [
+    "OmzetZalToenemen_23",
+    "OmzetZalGelijkBlijven_24",
+    "OmzetZalAfnemen_25"
+    ],
+    "buitenlandse omzet afgelopen 3 maanden": [
+    "BuitenlandseOmzetIsToegenomen_27",
+    "BuitenlandseOmzetIsGelijkGebleven_28",
+    "BuitenlandseOmzetIsAfgenomen_29",
+    "NietVanToepassing_30"
+    ],
+    "buitenlandse omzet komende 3 maanden": [
+    "BuitenlandseOmzetZalToenemen_32",
+    "BuitenlandseOmzetZalGelijkBlijven_33",
+    "BuitenlandseOmzetZalAfnemen_34",
+    "NietVanToepassing_35"
+    ],
+    "buitenlandse omzet volgend jaar": [
+    "BuitenlandseOmzetZalToenemen_37",
+    "BuitenlandseOmzetZalGelijkBlijven_38",
+    "BuitenlandseOmzetZalAfnemen_39",
+    "NietVanToepassing_40"
+    ],
+    "verkoopprijzen/tarieven komende 3 maanden": [
+    "VerkoopprijzenTarievenZullenToenemen_42",
+    "VerkoopprijzenTarievenBlijvenGelijk_43",
+    "VerkoopprijzenTarievenZullenAfnemen_44"
+    ],
+    "waarde orderontvangst afgelopen 3 maanden": [
+    "OrderontvangstIsToegenomen_46",
+    "OrderontvangstIsGelijkGebleven_47",
+    "OrderontvangstIsAfgenomen_48",
+    "NietVanToepassing_49"
+    ],
+    "waarde orderontvangst komende 3 maanden": [
+    "OrderontvangstZalToenemen_51",
+    "OrderontvangstZalGelijkBlijven_52",
+    "OrderontvangstZalAfnemen_53",
+    "NietVanToepassing_54"
+    ],
+    "waarde buitenlandse orderontvangst komende 3 maanden": [
+    "BuitenlandseOrderontvZalToenemen_56",
+    "BuitenlOrderontvZalGelijkBlijven_57",
+    "BuitenlandseOrderontvZalAfnemen_58",
+    "NietVanToepassing_59"
+    ],
+    "waarde te plaatsen orders komende 3 maanden": [
+    "InkoopOrdersZullenToenemen_61",
+    "InkoopOrdersZullenGelijkBlijven_62",
+    "InkoopOrdersZullenAfnemen_63",
+    "NietVanToepassing_64"
+    ],
+    "orderpositie uitgedrukt in maanden": [
+    "OrderpositieUitgedruktInMaandenWerk_66"
+    ],
+    "oordeel orderpositie": [
+    "OrderpositieIsTeGroot_67",
+    "OrderpositieIsNormaal_68",
+    "OrderpositieIsTeKlein_69",
+    "NietVanToepassing_70"
+    ],
+    "oordeel buitenlandse orderpositie": [
+    "OrderpositieBuitenlandIsTeGroot_72",
+    "OrderpositieBuitenlandIsNormaal_73",
+    "OrderpositieBuitenlandIsTeKlein_74",
+    "NietVanToepassing_75"
+    ],
+    "voorraden eindproduct": [
+    "VoorradenEindproductZijnTeGroot_77",
+    "VoorradenEindproductZijnNormaal_78",
+    "VoorradenEindproductZijnTeKlein_79",
+    "NietVanToepassing_80"
+    ],
+    "Belemmeringen": [
+    "GeenBelemmeringen_82",
+    "OnvoldoendeVraag_83",
+    "TekortAanArbeidskrachten_84",
+    "ProductiemiddelenMateriaalRuimte_85",
+    "FinancieleBeperkingen_86",
+    "Weersomstandigheden_87",
+    "AndereOorzaken_88"
+    ],
+    "Personeelssterkte afgelopen 3 maanden": [
+    "PersoneelssterkteIsToegenomen_89",
+    "PersoneelssterkteIsGelijkGebleven_90",
+    "PersoneelssterkteIsAfgenomen_91"
+    ],
+    "personeelssterkte komende 3 maanden": [
+    "PersoneelssterkteZalToenemen_93",
+    "PersoneelssterkteZalGelijkBlijven_94",
+    "PersoneelssterkteZalAfnemen_95"
+    ],
+    "personeelssterkte volgend jaar": [
+    "PersoneelssterkteZalToenemen_97",
+    "PersoneelssterkteZalGelijkBlijven_98",
+    "PersoneelssterkteZalAfnemen_99"
+    ],
+    "verwachte investeringen verslagjaar": [
+    "InvesteringenZullenToenemen_101",
+    "InvesteringenZullenGelijkBlijven_102",
+    "InvesteringenZullenAfnemen_103"
+    ],
+    "verwachte investeringen volgend jaar": [
+    "InvesteringenZullenToenemen_105",
+    "InvesteringenZullenGelijkBlijven_106",
+    "InvesteringenZullenAfnemen_107"
+    ],
+    "concurrentenpositie nederlandse markt": [
+    "ConcurrentiepositieIsVerbeterd_109",
+    "ConcurrentiepositieIsGelijkGebleven_110",
+    "ConcurrentiepositieIsVerslechterd_111",
+    "NietVanToepassing_112"
+    ],
+    "concurrentenpositie buitenlandse markt binnen de eu": [
+    "ConcurrentiepositieIsVerbeterd_114",
+    "ConcurrentiepositieIsGelijkGebleven_115",
+    "ConcurrentiepositieIsVerslechterd_116",
+    "NietVanToepassing_117"
+    ],
+    "concurrentenpositie buitenlandse markt buiten de eu": [
+    "ConcurrentiepositieIsVerbeterd_119",
+    "ConcurrentiepositieIsGelijkGebleven_120",
+    "ConcurrentiepositieIsVerslechterd_121",
+    "NietVanToepassing_122"
+    ],
+    "econmisch klimaat afgelopen 3 maanden": [
+    "EconomischKlimaatIsVerbeterd_124",
+    "EconomischKlimaatIsGelijkGebleven_125",
+    "EconomischKlimaatIsVerslechterd_126"
+    ],
+    "economisch klimaat komende 3 maanden": [
+    "EconomischKlimaatZalVerbeteren_128",
+    "EconomischKlimaatZalGelijkBlijven_129",
+    "EconomischKlimaatZalVerslechteren_130"
+    ],
+    "winstgevendheid afgelopen 3 maanden": [
+    "WinstgevendheidIsVerbeterd_132",
+    "WinstgevendheidIsGelijkGebleven_133",
+    "WinstgevendheidIsVerslechterd_134"
+    ]
+  }
 
-    var sbi = [ 300002, 300006, 300010, 300012, 300014, 300025, 300030, 301000, 301100, 301200, 301700, 302400, 302600, 303400, 303600, 304100, 304300, 304400, 304600, 304800, 305000, 305100, 305400, 305700, 305800, 305900, 306100, 306300, 306400, 306600, 307000, 307100, 307300, 307500, 307600, 307610, 307700, 308100, 308300, 308700, 309000, 309300, 309600, 310000, 311000, 311300, 311400, 312200, 312300, 312500, 312505, 312600, 312800, 313000, 313200, 314000, 314100, 314700, 314900, 315200, 315300, 315600, 315800, 315805, 315900, 316300, 317100, 317105, 317200, 317800, 318600, 318700, 319800, 320000, 320005, 320100, 320300, 320700, 320705, 320800, 321800, 322000, 322200, 322500, 323000, 323200, 323300, 323500, 323700, 323800, 324100, 324600, 324700, 325300, 325500, 325800, 326400, 326700, 327600, 327800, 328100, 328105, 328110, 328200, 328400, 328600, 329100, 329800, 330300, 330400, 330700, 331000, 331200, 331400, 331600, 331900, 332300, 332900, 332905, 332910, 333000, 333300, 333500, 333700, 333900, 334200, 334400, 334600, 334800, 334900, 335200, 335400, 335800, 336000, 336300, 336500, 336600, 337200, 337900, 338100, 338400, 339200, 339205, 339300, 339500, 339900, 340200, 340300, 340600, 340800, 341000, 341200, 341600, 341700, 342400, 342500, 342900, 343100, 343300, 343500, 343900, 344400, 344500, 345700, 346600, 346700, 346800, 347600, 347800, 348000, 348100, 348200, 348400, 348500, 348700, 348800, 349100, 349400, 349700, 349800, 350000, 350100, 350200, 350400, 350600, 350700, 351300, 351600, 351900, 352000, 352400, 353000, 353500, 354200, 354300, 354400, 355300, 356000, 356500, 356900, 357000, 357955, 358000, 359800, 361700, 365700, 366000, 367900, 371200, 371600, 371700, 372200, 373800, 374000, 374600, 377400, 378400, 381600, 382500, 383100, 383200, 383300, 383500, 383700, 384400, 384700, 384900, 384905, 385000, 385200, 385600, 385705, 385800, 386300, 386400, 386600, 386800, 386900, 387400, 388400, 388500, 388700, 389100, 389105, 389200, 389300, 389700, 390100, 390300, 390500, 390600, 391100, 391400, 391600, 391700, 391705, 391800, 392300, 392600, 392700, 393400, 393600, 393700, 393900, 394100, 394200, 394400, 394600, 394800, 395000, 395005, 395100, 395600, 395700, 396000, 396300, 396400, 396500, 397200, 397400, 397900, 398700, 398800, 399400, 399600, 400200, 400300, 401000, 401800, 402000, 402100, 402200, 402400, 403000, 403300, 403400, 403405, 403500, 404200, 404900, 405000, 405400, 405900, 406000, 406300, 406800, 406900, 407900, 408100, 408105, 408200, 408500, 408700, 408800, 409000, 409500, 409700, 409900, 410000, 410200, 410300, 410400, 410900, 411600, 412500, 412700, 412800, 413000, 413500, 413700, 413800, 414100, 414300, 414400, 414600, 414800, 415000, 415100, 415300, 415700, 415900, 416000, 416300, 416500, 416700, 417400, 417500, 417600, 418000, 418800, 419000, 419100, 419200, 419700, 420700, 421000, 422200, 422400, 422500, 422600, 423200, 424000, 425300, 425305, 425400, 425600, 425800, 426200, 426600, 426700, 427200, 428100, 428200, 428300, 429300, 429400, 430600, 430700, 431100, 431200, 434800, 435500, 435600, 435700, 436000, 436200, 437500, 437600, 437900, 438600, 438700, 440000, 440100, 440200, 440400, 440500, 440700, 440900, 441000, 441100]
+  var conjunctuurBedrijfsgrootte = {
+    "100155": "5 of meer werkzame personen",
+    "100160":  "5 tot 50 werkzame personen",
+    "100800":  "50 tot 250 werkzame personen",
+    "101150":  "250 of meer werkzame personen"
+
+  }
+  //alle sbi codes
+  var sbi = [ 300002, 300006, 300010, 300012, 300014, 300025, 300030, 301000, 301100, 301200, 301700, 302400, 302600, 303400, 303600, 304100, 304300, 304400, 304600, 304800, 305000, 305100, 305400, 305700, 305800, 305900, 306100, 306300, 306400, 306600, 307000, 307100, 307300, 307500, 307600, 307610, 307700, 308100, 308300, 308700, 309000, 309300, 309600, 310000, 311000, 311300, 311400, 312200, 312300, 312500, 312505, 312600, 312800, 313000, 313200, 314000, 314100, 314700, 314900, 315200, 315300, 315600, 315800, 315805, 315900, 316300, 317100, 317105, 317200, 317800, 318600, 318700, 319800, 320000, 320005, 320100, 320300, 320700, 320705, 320800, 321800, 322000, 322200, 322500, 323000, 323200, 323300, 323500, 323700, 323800, 324100, 324600, 324700, 325300, 325500, 325800, 326400, 326700, 327600, 327800, 328100, 328105, 328110, 328200, 328400, 328600, 329100, 329800, 330300, 330400, 330700, 331000, 331200, 331400, 331600, 331900, 332300, 332900, 332905, 332910, 333000, 333300, 333500, 333700, 333900, 334200, 334400, 334600, 334800, 334900, 335200, 335400, 335800, 336000, 336300, 336500, 336600, 337200, 337900, 338100, 338400, 339200, 339205, 339300, 339500, 339900, 340200, 340300, 340600, 340800, 341000, 341200, 341600, 341700, 342400, 342500, 342900, 343100, 343300, 343500, 343900, 344400, 344500, 345700, 346600, 346700, 346800, 347600, 347800, 348000, 348100, 348200, 348400, 348500, 348700, 348800, 349100, 349400, 349700, 349800, 350000, 350100, 350200, 350400, 350600, 350700, 351300, 351600, 351900, 352000, 352400, 353000, 353500, 354200, 354300, 354400, 355300, 356000, 356500, 356900, 357000, 357955, 358000, 359800, 361700, 365700, 366000, 367900, 371200, 371600, 371700, 372200, 373800, 374000, 374600, 377400, 378400, 381600, 382500, 383100, 383200, 383300, 383500, 383700, 384400, 384700, 384900, 384905, 385000, 385200, 385600, 385705, 385800, 386300, 386400, 386600, 386800, 386900, 387400, 388400, 388500, 388700, 389100, 389105, 389200, 389300, 389700, 390100, 390300, 390500, 390600, 391100, 391400, 391600, 391700, 391705, 391800, 392300, 392600, 392700, 393400, 393600, 393700, 393900, 394100, 394200, 394400, 394600, 394800, 395000, 395005, 395100, 395600, 395700, 396000, 396300, 396400, 396500, 397200, 397400, 397900, 398700, 398800, 399400, 399600, 400200, 400300, 401000, 401800, 402000, 402100, 402200, 402400, 403000, 403300, 403400, 403405, 403500, 404200, 404900, 405000, 405400, 405900, 406000, 406300, 406800, 406900, 407900, 408100, 408105, 408200, 408500, 408700, 408800, 409000, 409500, 409700, 409900, 410000, 410200, 410300, 410400, 410900, 411600, 412500, 412700, 412800, 413000, 413500, 413700, 413800, 414100, 414300, 414400, 414600, 414800, 415000, 415100, 415300, 415700, 415900, 416000, 416300, 416500, 416700, 417400, 417500, 417600, 418000, 418800, 419000, 419100, 419200, 419700, 420700, 421000, 422200, 422400, 422500, 422600, 423200, 424000, 425300, 425305, 425400, 425600, 425800, 426200, 426600, 426700, 427200, 428100, 428200, 428300, 429300, 429400, 430600, 430700, 431100, 431200, 434800, 435500, 435600, 435700, 436000, 436200, 437500, 437600, 437900, 438600, 438700, 440000, 440100, 440200, 440400, 440500, 440700, 440900, 441000, 441100]
+
+  var conjunctuurSbi = {
+    "300030":   "Totaal (ex. financieel of nutsbedrijven)",
+    "301000":   "A Landbouw, bosbouw en visserij",
+    "305700":   "B Delfstoffenwinning",
+    "307500":   "C Industrie",
+    "350000":   "F Bouwnijverheid",
+    "354200":   "G Handel",
+    "383100":   "H Vervoer en opslag",
+    "389100":   "I Horeca",
+    "391600":   "J Informatie en communicatie",
+    "402000":   "L Verhuur en handel van onroerend goed",
+    "403300":   "M Specialistische zakelijke diensten",
+    "410200":   "N Verhuur en overige zakelijke diensten",
+    "428100":   "R Cultuur, sport en recreatie",
+    "435500":   "S Overige dienstverlening"
+
+  }
+
+  var conjunctuurOpties = [
+  "productie/bedrijvigheid afgelopen 3 maanden",
+  "productie/bedrijvingheid komende 3 maanden",
+  "omzet afgelopen 3 maanden",
+  "omzet komende 3 maanden",
+  "omzet volgend jaar",
+  "buitenlandse omzet afgelopen 3 maanden",
+  "buitenlandse omzet komende 3 maanden",
+  "buitenlandse omzet volgend jaar",
+  "verkoopprijzen/tarieven komende 3 maanden",
+  "waarde orderontvangst afgelopen 3 maanden",
+  "waarde orderontvangst komende 3 maanden",
+  "waarde buitenlandse orderontvangst komende 3 maanden",
+  "waarde te plaatsen orders komende 3 maanden",
+  "Personeelssterkte afgelopen 3 maanden",
+  "personeelssterkte komende 3 maanden",
+  "personeelssterkte volgend jaar",
+  "verwachte investeringen verslagjaar",
+  "verwachte investeringen volgend jaar"
+
+  ]
 
 
 
-    var dataSet = {}
+  var dataSet = {}
 
     //Mogelijkheid om options te kiezen waarop je filtert.
 
     $( document ).ready(function() {
       // loadOpheffingenOprichtingen()
-
       var output = [];
-
       $.each(sbi, function(index, value)
       {
-
         output.push('<option value="'+ value +'">'+ value +'</option>');
       });
-
       $('#sbiinput').html(output.join(''));
+      var output = [];
+      $.each(conjunctuurBedrijfsgrootte, function(key, value)
+      {
+        output.push('<option value="'+ key +'">'+ value +'</option>');
+      });
+      $('#bedrijfsgrootteconjunctuur').html(output.join(''));
+      var output = [];
+      $.each(conjunctuurSbi, function(key, value)
+      {
+        output.push('<option value="'+ key +'">'+ value +'</option>');
+      });
+      $('#sbiinputconjunctuur').html(output.join(''));
+      var output = [];
+      $.each(conjunctuurOpties, function(index, value)
+      {
+        output.push('<option value="'+ value +'">'+ value +'</option>');
+      });
+      $('#optieconjuntuur').html(output.join(''));
     });
 
 
@@ -91,11 +325,6 @@
       ['Opheffingen'],
       ['totaal'],
       ]
-
-
-
-
-
 
       for(i in graphData){
         dataset[1].push(graphData[i][0])
@@ -146,7 +375,7 @@
         });
 
 
-       chart2 = c3.generate({
+      chart2 = c3.generate({
         data: {
           x: 'x',
           columns:dataSetCumulatief
@@ -166,7 +395,98 @@
 
           bindto: '#chart2'
         });
-    }    
+    } 
+
+
+    var drawConjunctuurGraph = function(data){
+
+      dataToegenomen = ["Toegenomen"]
+      dataAfgenomen = ["Afgenomen"]
+      dataNetto = ["Netto"]
+      periods = ["x"]
+
+      for(period in data){
+        periods.push(period)
+        for(type in data[period]){
+          if(type.indexOf('Toegenomen') !== -1 || type.indexOf('Toenemen') !== -1) {
+            dataToegenomen.push(data[period][type])
+          } else if(type.indexOf('Afgenomen') !== -1 || type.indexOf('Afnemen') !== -1) {
+            dataAfgenomen.push(-data[period][type])
+
+          }
+        }
+
+
+      }
+
+      for (var i = 1; i < dataToegenomen.length; i++) {
+        dataNetto.push(dataToegenomen[i] + dataAfgenomen[i])
+      };
+
+      dataset=[periods, dataToegenomen, dataAfgenomen,  dataNetto ]
+      total = 0
+      dataSetCumulatief =  [['cumulatief'], ['x']]
+      for (var i = 1; i < dataset[3].length; i++) {
+        dataSetCumulatief[0].push(parseInt(dataset[3][i])+parseInt(total))
+        dataSetCumulatief[1].push(dataset[0][i])
+        total += dataset[3][i]
+      };
+      chart3 = c3.generate({
+        data: {
+          x: "x",
+          columns:dataset,
+          type: 'bar',
+          types: {
+            Netto : 'line'
+          },
+          colors: {
+            'Toegenomen': '#00ff00',
+            "Afgenomen": '#ff0000'
+
+          },
+          groups: [
+          ['Toegenomen', 'Afgenomen']
+          ] 
+
+        },
+
+        grid: {
+          y: {
+            lines: [{value:0}]
+          }
+        },
+        axis: {
+          x: {
+              type: 'category' // this needed to load string x value
+            }
+          },
+
+          bindto: '#chartconjunctuur'
+        });
+
+
+      chart4 = c3.generate({
+        data: {
+          x: 'x',
+          columns:dataSetCumulatief
+        },
+
+        grid: {
+          y: {
+            lines: [{value:0}]
+          }
+        },
+
+        axis: {
+          x: {
+              type: 'category' // this needed to load string x value
+            }
+          },
+
+          bindto: '#chartconjunctuur2'
+        });
+
+    }   
 
 
 
@@ -210,6 +530,19 @@
     }
 
 
+    var loadConjunctuur = function(option, companysize, sbi){
+      console.log(option, companysize, sbi)
+      $.getJSON('data/conjunctuurenquete.json', function(data){
+        data = data.value
+        setDataConjunctuur(data, option, companysize, sbi, function(result){
+          console.log(result)
+          drawConjunctuurGraph(result)
+        })
+      })
+
+    }
+
+
 
     function generatePeriods(year){
       toyear = 2016
@@ -242,9 +575,40 @@
     }
 
     var getDataFromPeriod2 = function(data, period, option){
+
       result = {}
-      result[option] = parseInt(data[option])
+
+      result[option] = parseInt(data[option])  
+      
+      
       return result
+    }
+
+    var getDataFromPeriodConjunctuur= function(data, period, option){
+      result = {}
+
+      for(i in conjunctuurTable[option]){
+        result[conjunctuurTable[option][i]] = parseFloat(data[conjunctuurTable[option][i]]) || 0
+      }
+
+      
+      
+      return result
+    }
+
+    function setDataConjunctuur(data, option, companysize, sbi, callback){
+      resultData = {}
+      
+      for(i in data){
+        if(data[i].BedrijfstakkenBranchesSBI2008 == sbi && data[i].Bedrijfsgrootte == companysize){
+          if(!resultData[data[i].Perioden]){
+            resultData[data[i].Perioden] = getDataFromPeriodConjunctuur(data[i], data[i].Perioden, option)
+          }
+        }
+      }
+
+
+      callback(resultData)
     }
 
     function setData(data, period, option, sbi, callback){
@@ -300,15 +664,32 @@
 
       $('#checkfusies').change(function() {
         if($(this).is(":checked")) {
-           var period = document.getElementById('periode').value
-           var option = document.getElementById('bedrijfsgrootte').value
-           var sbi  = document.getElementById('sbiinput').value
+         var period = document.getElementById('periode').value
+         var option = document.getElementById('bedrijfsgrootte').value
+         var sbi  = document.getElementById('sbiinput').value
 
-           loadFusies(period, option, sbi)
+         loadFusies(period, option, sbi)
          
-        };
+       };
      });
+
+
     });    
+
+
+    $(function() {
+      $("#submitconjunctuur").click( function()
+      {
+       var optieconjuntuur = document.getElementById('optieconjuntuur').value
+       var bedrijfsgrootteconjunctuur = document.getElementById('bedrijfsgrootteconjunctuur').value
+       var sbiinputconjunctuur  = document.getElementById('sbiinputconjunctuur').value
+
+       loadConjunctuur(optieconjuntuur, bedrijfsgrootteconjunctuur, sbiinputconjunctuur)
+     }
+     );
+
+
+    });
 
 
 
@@ -364,6 +745,43 @@
     <div class="row">
       <div class="col-md-6">
         <div class="chart" id="chart2">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-6">
+        <select id="optieconjuntuur">
+        </select>
+        <select id='sbiinputconjunctuur'>
+
+        </select>
+
+        <select id="bedrijfsgrootteconjunctuur">
+
+        </select>
+
+
+        
+        <button id="submitconjunctuur" type="submit" class="btn btn-primary">Submit</button>
+        
+        <br>
+        <br>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+
+        <div class="chart" id="chartconjunctuur">
+
+        </div>
+
+      </div>
+      <div class="col-md-6">
+        <div class="chart" id="chartconjunctuur2">
+
         </div>
       </div>
     </div>
