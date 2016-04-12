@@ -207,7 +207,7 @@
     "ConcurrentiepositieIsVerslechterd_121",
     "NietVanToepassing_122"
     ],
-    "econmisch klimaat afgelopen 3 maanden": [
+    "economisch klimaat afgelopen 3 maanden": [
     "EconomischKlimaatIsVerbeterd_124",
     "EconomischKlimaatIsGelijkGebleven_125",
     "EconomischKlimaatIsVerslechterd_126"
@@ -270,17 +270,28 @@
   "personeelssterkte komende 3 maanden",
   "personeelssterkte volgend jaar",
   "verwachte investeringen verslagjaar",
-  "verwachte investeringen volgend jaar"
+  "verwachte investeringen volgend jaar",
+  "concurrentenpositie nederlandse markt",
+  "concurrentenpositie buitenlandse markt binnen de eu",
+  "concurrentenpositie buitenlandse markt buiten de eu",
+  "economisch klimaat afgelopen 3 maanden",
+  "economisch klimaat komende 3 maanden",
+  "winstgevendheid afgelopen 3 maanden"
 
   ]
 
 
+  var conjunctuurOptiesOordeel = [
+  "oordeel productiecapaciteit",
+  "oordeel orderpositie",
+  "oordeel buitenlandse orderpositie"
+  ]
 
   var dataSet = {}
 
-    //Mogelijkheid om options te kiezen waarop je filtert.
 
-    $( document ).ready(function() {
+
+  $( document ).ready(function() {
       // loadOpheffingenOprichtingen()
       var output = [];
       $.each(sbi, function(index, value)
@@ -349,7 +360,7 @@
           columns:dataset,
           type: 'bar',
           types: {
-            totaal : 'line'
+            'totaal' : 'line'
           },
           colors: {
             'Oprichtingen': '#00ff00',
@@ -398,6 +409,8 @@
     } 
 
 
+
+
     var drawConjunctuurGraph = function(data){
 
       dataToegenomen = ["Toegenomen"]
@@ -408,9 +421,9 @@
       for(period in data){
         periods.push(period)
         for(type in data[period]){
-          if(type.indexOf('Toegenomen') !== -1 || type.indexOf('Toenemen') !== -1) {
+          if(type.indexOf('Toegenomen') !== -1 || type.indexOf('Toenemen') !== -1 || type.indexOf('Verbeter') !== -1) {
             dataToegenomen.push(data[period][type])
-          } else if(type.indexOf('Afgenomen') !== -1 || type.indexOf('Afnemen') !== -1) {
+          } else if(type.indexOf('Afgenomen') !== -1 || type.indexOf('Afnemen') !== -1 || type.indexOf('Verslechter') !== -1) {
             dataAfgenomen.push(-data[period][type])
 
           }
@@ -431,6 +444,8 @@
         dataSetCumulatief[1].push(dataset[0][i])
         total += dataset[3][i]
       };
+
+      console.log(dataset)
       chart3 = c3.generate({
         data: {
           x: "x",
@@ -490,216 +505,343 @@
 
 
 
-    var loadOpheffingenOprichtingen = function(period, option, sbi){
-      $.getJSON("data/testDataOprichtingenCompleet.json", function(data) {
-        data = data.value
-        setData(data, period, option , sbi, function(result){
-          $.getJSON("data/testDataOpheffingenCompleet.json", function(data1){
-            setData(data1.value, period, option, sbi, function(result2){
-              mergeResults(result, result2, option,  function(graphData){
-                dataSet= graphData
-                console.log(graphData)
-                drawgraph(graphData, period)
-              })
-            })
 
-          });
-        })
-      });
+    var drawConjunctuurGraphOordeel = function(data, periode){
+
+      dataTeGroot = ["Te Groot"]
+      dataTeKlein = ["Te klein"]
+      dataNormaal = ["Normaal"]
+      dataNVT = ["NVT"]
+
+
+
+      for(i in data[periode]){
+
+        if(i.indexOf("Groot") !== -1){
+          dataTeGroot.push(data[periode][i])
+        } else if(i.indexOf("Klein") !== -1){
+          dataTeKlein.push(data[periode][i])
+        } else if(i.indexOf("Normaal") !== -1){
+         dataNormaal.push(data[periode][i])
+       } else if(i.indexOf("Toepassing") !== -1){
+        dataNVT.push(data[periode][i])
+      }
+
+
     }
 
-    var loadFusies = function(period, option, sbi){
-      $.getJSON('data/fusiescompleet.json', function(data){
-        data = data.value
-        setData(data, period, option, sbi, function(result){
-          console.log(result)
-          fusieset = ['fusies en overnames']
-          for(period in result){
-            fusieset.push(result[period][option])
+    dataset = [dataTeGroot, dataTeKlein, dataNormaal, dataNVT]
+    console.log(dataset)
 
-          }
-          console.log(fusieset)
+    var chart5 = c3.generate({
+      data: {
+        // iris data from R
+        columns:dataset,
+        type : 'pie'
+      },
+      bindto: "#chartconjunctuuroordeel"
+    });
 
-          chart.load({
-            columns:[ fusieset
-            ]
+
+
+
+
+  }
+
+  var drawBelemmeringen = function(data, periode){
+
+    dataGeen = ["Geen belemmeringen"]
+    dataOnvoldoendeVraag = ["Onvoldoende vraag"]
+    dataTekort = ["Tekort aan arbeidskrachten"]
+    dataProductie = ["Productie, middelen, materiaal en ruimte"]
+    dataFinancieel = ['Financiele Beperkingen']
+    dataWeer = ['Weersomstandigheden']
+    dataAnders = ['Andere oorzaken']
+
+
+    for(i in data[periode]){
+
+      if(i == "GeenBelemmeringen_82"){
+        dataGeen.push(data[periode][i])
+      } else if(i == "OnvoldoendeVraag_83"){
+        dataOnvoldoendeVraag.push(data[periode][i])
+      } else if(i == "TekortAanArbeidskrachten_84"){
+        dataTekort.push(data[periode][i])
+      } else if(i == "ProductiemiddelenMateriaalRuimte_85"){
+        dataProductie.push(data[periode][i])
+      } else if(i == "FinancieleBeperkingen_86"){
+        dataFinancieel.push(data[periode][i])
+      } else if(i == "Weersomstandigheden_87"){
+        dataWeer.push(data[periode][i])
+      } else if(i == "AndereOorzaken_88"){
+        dataAnders.push(data[periode][i])
+      }
+
+
+    }
+    dataset = [dataGeen, dataOnvoldoendeVraag, dataTekort, dataProductie, dataFinancieel, dataWeer, dataAnders]
+    console.log(dataset)
+
+    var chart6 = c3.generate({
+      data: {
+        // iris data from R
+        columns:dataset,
+        type : 'pie'
+      },
+      bindto: "#chartbelemmeringen"
+    });
+
+
+
+
+
+  }    
+
+  var loadOpheffingenOprichtingen = function(period, option, sbi){
+    $.getJSON("data/testDataOprichtingenCompleet.json", function(data) {
+      data = data.value
+      setData(data, period, option , sbi, function(result){
+        $.getJSON("data/testDataOpheffingenCompleet.json", function(data1){
+          setData(data1.value, period, option, sbi, function(result2){
+            mergeResults(result, result2, option,  function(graphData){
+              dataSet= graphData
+              console.log(graphData)
+              drawgraph(graphData, period)
+            })
           })
 
-        })
+        });
       })
-    }
+    });
+  }
 
+  var loadFusies = function(period, option, sbi){
+    $.getJSON('data/fusiescompleet.json', function(data){
+      data = data.value
+      setData(data, period, option, sbi, function(result){
+        console.log(result)
+        fusieset = ['fusies en overnames']
+        for(period in result){
+          fusieset.push(result[period][option])
 
-    var loadConjunctuur = function(option, companysize, sbi){
-      console.log(option, companysize, sbi)
-      $.getJSON('data/conjunctuurenquete.json', function(data){
-        data = data.value
-        setDataConjunctuur(data, option, companysize, sbi, function(result){
-          console.log(result)
-          drawConjunctuurGraph(result)
+        }
+        console.log(fusieset)
+
+        chart.load({
+          columns:[ fusieset
+          ]
         })
+
       })
+    })
+  }
 
-    }
 
+  var loadConjunctuur = function(option, companysize, sbi, type, periode){
+    console.log(option, companysize, sbi)
+    $.getJSON('data/conjunctuurenquete.json', function(data){
+      data = data.value
+      setDataConjunctuur(data, option, companysize, sbi, function(result){
+        console.log(result)
+        if(type == "oordeel"){
+          drawConjunctuurGraphOordeel(result, periode)
+        } else if(type == "belemmeringen") {
+          drawBelemmeringen(result, periode)
 
-
-    function generatePeriods(year){
-      toyear = 2016
-      periods = []
-      for (var i = year; i <= toyear; i++) {
-        for(var j = 1; j<5; j++){
-          periods.push(String(i)+'KW0'+String(j))
+        } else if(type == 'conjunctuur'){
+          console.log("HIEP HOi ")
+          drawConjunctuurGraph(result)  
         }
-      };
-      return periods
+
+      })
+    })
+
+  }
+
+
+
+  function generatePeriods(year){
+    toyear = 2016
+    periods = []
+    for (var i = year; i <= toyear; i++) {
+      for(var j = 1; j<5; j++){
+        periods.push(String(i)+'KW0'+String(j))
+      }
+    };
+    return periods
+  }
+
+
+
+
+  options = [ "k_1WerkzamePersoonOfMinder_2", "k_2Tot10WerkzamePersonen_3" , "k_10Tot50WerkzamePersonen_4", "k_50Tot250WerkzamePersonen_5", "k_250WerkzamePersonenOfMeer_6"]
+  var getDataFromPeriod = function(data, period, option){
+    result = {}
+    for(i in data){
+      if(data[i].Perioden == period){
+
+        for (var j = options.length - 1; j >= 0; j--) {
+          if(options[j] == option){
+            result[options[j]] = parseInt([data[i][options[j]]]);
+          }
+        };
+      }
+    }
+    return result
+  }
+
+  var getDataFromPeriod2 = function(data, period, option){
+
+    result = {}
+
+    result[option] = parseInt(data[option])  
+
+
+    return result
+  }
+
+  var getDataFromPeriodConjunctuur= function(data, period, option){
+    result = {}
+
+    for(i in conjunctuurTable[option]){
+      result[conjunctuurTable[option][i]] = parseFloat(data[conjunctuurTable[option][i]]) || 0
     }
 
 
 
+    return result
+  }
 
-    options = [ "k_1WerkzamePersoonOfMinder_2", "k_2Tot10WerkzamePersonen_3" , "k_10Tot50WerkzamePersonen_4", "k_50Tot250WerkzamePersonen_5", "k_250WerkzamePersonenOfMeer_6"]
-    var getDataFromPeriod = function(data, period, option){
-      result = {}
+  function setDataConjunctuur(data, option, companysize, sbi, callback){
+    resultData = {}
+
+    for(i in data){
+      if(data[i].BedrijfstakkenBranchesSBI2008 == sbi && data[i].Bedrijfsgrootte == companysize){
+        if(!resultData[data[i].Perioden]){
+          resultData[data[i].Perioden] = getDataFromPeriodConjunctuur(data[i], data[i].Perioden, option)
+        }
+      }
+    }
+
+
+    callback(resultData)
+  }
+
+  function setData(data, period, option, sbi, callback){
+    resultData = {}
+    if(period == "year"){
       for(i in data){
-        if(data[i].Perioden == period){
-
-          for (var j = options.length - 1; j >= 0; j--) {
-            if(options[j] == option){
-              result[options[j]] = parseInt([data[i][options[j]]]);
-            }
-          };
+        if(data[i].BedrijfstakkenBranchesSBI2008 == sbi){
+          if(!resultData[data[i].Perioden] && data[i].Perioden.indexOf('JJ') !== -1){
+            resultData[data[i].Perioden] = getDataFromPeriod2(data[i], data[i].Perioden, option)
+          }
         }
       }
-      return result
-    }
-
-    var getDataFromPeriod2 = function(data, period, option){
-
-      result = {}
-
-      result[option] = parseInt(data[option])  
-      
-      
-      return result
-    }
-
-    var getDataFromPeriodConjunctuur= function(data, period, option){
-      result = {}
-
-      for(i in conjunctuurTable[option]){
-        result[conjunctuurTable[option][i]] = parseFloat(data[conjunctuurTable[option][i]]) || 0
-      }
-
-      
-      
-      return result
-    }
-
-    function setDataConjunctuur(data, option, companysize, sbi, callback){
-      resultData = {}
-      
+    } else {
       for(i in data){
-        if(data[i].BedrijfstakkenBranchesSBI2008 == sbi && data[i].Bedrijfsgrootte == companysize){
-          if(!resultData[data[i].Perioden]){
-            resultData[data[i].Perioden] = getDataFromPeriodConjunctuur(data[i], data[i].Perioden, option)
+        if(data[i].BedrijfstakkenBranchesSBI2008 == sbi){
+          if(!resultData[data[i].Perioden] && data[i].Perioden.indexOf('JJ')  == -1){
+            resultData[data[i].Perioden] = getDataFromPeriod2(data[i],  data[i].Perioden, option)
           }
         }
       }
-
-
-      callback(resultData)
     }
 
-    function setData(data, period, option, sbi, callback){
-      resultData = {}
-      if(period == "year"){
-        for(i in data){
-          if(data[i].BedrijfstakkenBranchesSBI2008 == sbi){
-            if(!resultData[data[i].Perioden] && data[i].Perioden.indexOf('JJ') !== -1){
-              resultData[data[i].Perioden] = getDataFromPeriod2(data[i], data[i].Perioden, option)
-            }
-          }
-        }
-      } else {
-        for(i in data){
-          if(data[i].BedrijfstakkenBranchesSBI2008 == sbi){
-            if(!resultData[data[i].Perioden] && data[i].Perioden.indexOf('JJ')  == -1){
-              resultData[data[i].Perioden] = getDataFromPeriod2(data[i],  data[i].Perioden, option)
-            }
-          }
-        }
-      }
+    callback(resultData)
+  }
 
-      callback(resultData)
+  function mergeResults(oprichtingen, opheffingen, option, callback){
+    result = {}
+    for(period in oprichtingen){
+      result[period] = [oprichtingen[period][option], opheffingen[period][option]]
     }
 
-    function mergeResults(oprichtingen, opheffingen, option, callback){
-      result = {}
-      for(period in oprichtingen){
-        result[period] = [oprichtingen[period][option], opheffingen[period][option]]
-      }
+    callback(result)
 
-      callback(result)
-
-    }
+  }
 
 
-    $(function() {
-      $("#submit").click( function()
-      {
+  $(function() {
+    $("#submit").click( function()
+    {
+     var period = document.getElementById('periode').value
+     var option = document.getElementById('bedrijfsgrootte').value
+     var sbi  = document.getElementById('sbiinput').value
+
+     loadOpheffingenOprichtingen(period, option, sbi)
+   }
+   );
+
+
+  });
+
+
+  $(document).ready(function() {
+
+    $('#checkfusies').change(function() {
+      if($(this).is(":checked")) {
        var period = document.getElementById('periode').value
        var option = document.getElementById('bedrijfsgrootte').value
        var sbi  = document.getElementById('sbiinput').value
 
-       loadOpheffingenOprichtingen(period, option, sbi)
-     }
-     );
+       loadFusies(period, option, sbi)
+
+     };
+   });
 
 
-    });
+  });    
 
 
-    $(document).ready(function() {
+  $(function() {
+    $("#submitconjunctuur").click( function()
+    {
+      console.log('xxs')
+     var optieconjuntuur = document.getElementById('optieconjuntuur').value
+     var bedrijfsgrootteconjunctuur = document.getElementById('bedrijfsgrootteconjunctuur').value
+     var sbiinputconjunctuur  = document.getElementById('sbiinputconjunctuur').value
 
-      $('#checkfusies').change(function() {
-        if($(this).is(":checked")) {
-         var period = document.getElementById('periode').value
-         var option = document.getElementById('bedrijfsgrootte').value
-         var sbi  = document.getElementById('sbiinput').value
-
-         loadFusies(period, option, sbi)
-         
-       };
-     });
+     loadConjunctuur(optieconjuntuur, bedrijfsgrootteconjunctuur, sbiinputconjunctuur, 'conjunctuur', "")
+   }
 
 
-    });    
-
-
-    $(function() {
-      $("#submitconjunctuur").click( function()
-      {
-       var optieconjuntuur = document.getElementById('optieconjuntuur').value
-       var bedrijfsgrootteconjunctuur = document.getElementById('bedrijfsgrootteconjunctuur').value
-       var sbiinputconjunctuur  = document.getElementById('sbiinputconjunctuur').value
-
-       loadConjunctuur(optieconjuntuur, bedrijfsgrootteconjunctuur, sbiinputconjunctuur)
-     }
-     );
-
-
-    });
+   );
+    $("#submitoordeel").click( function()
+    {
+     var optieoordeel = document.getElementById('optieoordeel').value
+     var bedrijfsgrootteconjunctuur = document.getElementById('bedrijfsgrootteconjunctuur').value
+     var sbiinputconjunctuur  = document.getElementById('sbiinputconjunctuur').value
+     var conjunctuurperiode = document.getElementById('conjunctuurperiode').value
+     loadConjunctuur(optieoordeel, bedrijfsgrootteconjunctuur, sbiinputconjunctuur, 'oordeel', conjunctuurperiode)
+   }
 
 
 
 
+   );
+
+    $("#submitbelemmeringen").click( function()
+    {
+
+     var bedrijfsgrootteconjunctuur = document.getElementById('bedrijfsgrootteconjunctuur').value
+     var sbiinputconjunctuur  = document.getElementById('sbiinputconjunctuur').value
+     var conjunctuurperiode = document.getElementById('conjunctuurperiode').value
+     loadConjunctuur("Belemmeringen", bedrijfsgrootteconjunctuur, sbiinputconjunctuur, 'belemmeringen', conjunctuurperiode)
+   }
+
+   );
+
+  });
 
 
 
 
 
-    </script>
+
+
+
+
+  </script>
 
 
     <!--[if lt IE 9]>
@@ -736,18 +878,7 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-12">
-        <div id="chart"></div>
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col-md-6">
-        <div class="chart" id="chart2">
-        </div>
-      </div>
-    </div>
 
     <div class="row">
       <div class="col-md-4"></div>
@@ -764,13 +895,52 @@
 
 
         
-        <button id="submitconjunctuur" type="submit" class="btn btn-primary">Submit</button>
+        <button id="submitconjunctuur" type="submit" class="btn btn-primary">Submit Conjunctuur</button>
+
         
         <br>
         <br>
       </div>
 
     </div>
+
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-6">
+        <select id="optieoordeel">
+
+          <option value="oordeel productiecapaciteit">oordeel productiecapaciteit</option>\
+          <option value="oordeel orderpositie">oordeel orderpositie</option>
+          <option value="oordeel buitenlandse orderpositie">oordeel buitenlandse orderpositie </option>
+
+        </select>
+
+        <select id="conjunctuurperiode">
+          <option value="2015KW01">2015KW01</option>
+          <option value="2015KW02">2015KW02</option>
+          <option value="2015KW03">2015KW03</option>
+          <option value="2015KW04">2015KW04</option>
+          <option value="2016KW01">2016KW01</option>
+        </select>
+
+
+        <button class="btn btn-primary" id="submitoordeel">Submit Oordeel</button>
+        <button class="btn btn-primary" id="submitbelemmeringen">Submit Belemmeringen</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div id="chart"></div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="chart" id="chart2">
+        </div>
+      </div>
+    </div>
+
+
     <div class="row">
       <div class="col-md-6">
 
@@ -781,6 +951,21 @@
       </div>
       <div class="col-md-6">
         <div class="chart" id="chartconjunctuur2">
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+
+        <div class="chart" id="chartconjunctuuroordeel">
+
+        </div>
+
+      </div>
+      <div class="col-md-6">
+        <div class="chart" id="chartbelemmeringen">
 
         </div>
       </div>
