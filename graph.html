@@ -31,27 +31,14 @@
   <script>
 
 
-
-  var translationTable = {
-
-      // Werkende personen
-      "100000": "Totaal",
-      "100800": "50 tot 250 werkzame personen",
-      "101150": "250 of meer werkzame personen",
-      "101370": "0 tot 50 werkzame personen",
-      "101380": "0 tot 250 werkzame personen",
-      "k_1WerkzamePersoonOfMinder_2": "1 werkzame persoon of minder",
-      "k_2Tot10WerkzamePersonen_3": "2 tot 10 werkzame personen",
-      "k_10Tot50WerkzamePersonen_4": "10 tot 50 werkzame personen",
-      "k_50Tot250WerkzamePersonen_5": "50 tot 250 werkzame personen",
-      "k_250WerkzamePersonenOfMeer_6": "250 werkzame personen of meer",
-      "totaal": "totaal"
-
-
-
-    };
-
   // opties voor conjunctuurdataset
+
+  var vacatureTable = {
+    "OpenstaandeVacatures_1":  "Openstaande Vacatures" ,
+    "OntstaneVacatures_2": "Ontstane Vacatures",
+    "VervuldeVacatures_3": "Vervulde Vacatures"
+  }
+
   var conjunctuurTable = {
     "productie/bedrijvigheid afgelopen 3 maanden": [
     "ProductieBedrijvigheidIsToegenomen_1",
@@ -252,6 +239,35 @@
 
   }
 
+  var vacatureSbi = {
+
+    "300002":  "B-E Nijverheid (geen bouw) en energie",
+    "300003":  "B-F Nijverheid en energie",
+    "300006":  "G-I Handel, vervoer en horeca",
+    "300007":  "G-N Commerciële dienstverlening",
+    "300010":  "M-N Zakelijke dienstverlening",
+    "300012":  "O-Q Overheid en zorg",
+    "300013":  "O-U Niet-commerciële dienstverlening",
+    "300014":  "R-U Cultuur, recreatie, overige diensten",
+    "300025":  "A-U Alle economische activiteiten",
+    "307500":  "C Industrie",
+    "350000":  "F Bouwnijverheid",
+    "354200":  "G Handel",
+    "422400":  "Q Gezondheids- en welzijnszorg"
+
+  }
+
+  var vacatureBedrijfsgrootte = {
+    "100000":  "Totaal", 
+    "100100":  "0 tot 10 werkzame personen",
+    "100480":  "10 tot 50 werkzame personen",
+    "100800":  "50 tot 250 werkzame personen",
+    "101150":  "250 of meer werkzame personen",
+    "101370":  "0 tot 50 werkzame personen",
+    "101380":  "0 tot 250 werkzame personen"
+
+  }
+
   var conjunctuurOpties = [
   "productie/bedrijvigheid afgelopen 3 maanden",
   "productie/bedrijvingheid komende 3 maanden",
@@ -305,18 +321,48 @@
         output.push('<option value="'+ key +'">'+ value +'</option>');
       });
       $('#bedrijfsgrootteconjunctuur').html(output.join(''));
+      $('#bedrijfsgrootteoordeel').html(output.join(''));
+      $('#bedrijfsgroottebelemmeringen').html(output.join(''));
+
       var output = [];
       $.each(conjunctuurSbi, function(key, value)
       {
         output.push('<option value="'+ key +'">'+ value +'</option>');
       });
       $('#sbiinputconjunctuur').html(output.join(''));
+      $('#sbiinputoordeel').html(output.join(''));
+      $('#sbiinputbelemmeringen').html(output.join(''));
       var output = [];
       $.each(conjunctuurOpties, function(index, value)
       {
         output.push('<option value="'+ value +'">'+ value +'</option>');
       });
       $('#optieconjuntuur').html(output.join(''));
+      var output = [];
+      $.each(vacatureSbi, function(key, value)
+      {
+        output.push('<option value="'+ key +'">'+ value +'</option>');
+      });
+      $('#sbiinputvacatures').html(output.join(''));
+      var output = [];
+      $.each(vacatureBedrijfsgrootte, function(key, value)
+      {
+        output.push('<option value="'+ key +'">'+ value +'</option>');
+      });
+      $('#bedrijfsgroottevacatures').html(output.join(''));
+        // var output = [];
+      // $.each(generatePeriods(2011), function(index, value)
+      // {
+      //   output.push('<option value="'+ value +'">'+ value +'</option>');
+      // });
+      // $('#vacatureperiode').html(output.join(''));
+
+      var output = [];
+      $.each(vacatureTable, function(key, value)
+      {
+        output.push('<option value="'+ key +'">'+ value +'</option>');
+      });
+      $('#vacatureoption').html(output.join(''));
     });
 
 
@@ -584,7 +630,6 @@
 
     var chart6 = c3.generate({
       data: {
-        // iris data from R
         columns:dataset,
         type : 'pie'
       },
@@ -592,11 +637,55 @@
     });
 
 
-
-
-
   }    
 
+
+  var drawVacatures = function(data, option, sbi ){
+    var dataName = option + ' ' + sbi
+    dataset = [[dataName], ['x']]
+    for(i in data){
+      dataset[1].push(i)
+      dataset[0].push(data[i][option])
+    }
+
+    chartVacatures = c3.generate({
+      data: {
+        x: 'x',
+        columns: dataset
+
+      },
+      bindto:'#chartvacatures',
+      axis: {
+        x: {
+              type: 'category' // this needed to load string x value
+            },
+            y: { 
+              label: option + ' x 1000'
+
+            }
+
+          }
+
+        });
+
+
+    
+  }
+
+  var updateVacatures = function(data, option, sbi){
+    var dataName = option + ' ' + sbi
+    dataset = [[dataName], ['x']]
+    for(i in data){
+      dataset[1].push(i)
+      dataset[0].push(data[i][option])
+    }
+
+    console.log(dataset)
+    chartVacatures.load({
+      columns:dataset
+    })
+
+  }
   var loadOpheffingenOprichtingen = function(period, option, sbi){
     $.getJSON("data/testDataOprichtingenCompleet.json", function(data) {
       data = data.value
@@ -642,14 +731,12 @@
     $.getJSON('data/conjunctuurenquete.json', function(data){
       data = data.value
       setDataConjunctuur(data, option, companysize, sbi, function(result){
-        console.log(result)
         if(type == "oordeel"){
           drawConjunctuurGraphOordeel(result, periode)
         } else if(type == "belemmeringen") {
           drawBelemmeringen(result, periode)
 
         } else if(type == 'conjunctuur'){
-          console.log("HIEP HOi ")
           drawConjunctuurGraph(result)  
         }
 
@@ -658,10 +745,25 @@
 
   }
 
+  var loadVacatures = function(companysize, sbi, option, doesExist){
+    $.getJSON('data/vacatures.json', function(data){
+      data = data.value
+      setDataVacature(data, companysize, sbi, option,  function(result){
+        console.log(result)
+        if(doesExist){
+          updateVacatures(result, vacatureTable[option] , vacatureSbi[sbi])
+        } else {
+          drawVacatures(result, vacatureTable[option], vacatureSbi[sbi])  
+        }
+        
+      })
+    })
+  }
+
 
 
   function generatePeriods(year){
-    toyear = 2016
+    toyear = 2015
     periods = []
     for (var i = year; i <= toyear; i++) {
       for(var j = 1; j<5; j++){
@@ -711,6 +813,34 @@
 
     return result
   }
+
+  function setDataVacature(data, companysize, sbi, option, callback){
+    resultData = {}
+    for(i in data){
+
+      if(data[i].BedrijfstakkenBranchesSBI2008 == sbi && data[i].Bedrijfsgrootte == companysize){
+        if(!resultData[data[i].Perioden]){
+          resultData[data[i].Perioden] = getDataFromPeriodVacature(data[i], data[i].Perioden, option)
+        }
+      }
+    }
+
+    callback(resultData)
+
+  }
+
+  function getDataFromPeriodVacature(data, period, option){
+    result = {}
+
+    for(i in data){
+      if(vacatureTable[i] && i == option){
+        result[vacatureTable[i]] = parseFloat(data[i]) || 0;
+      }
+    }
+    return result
+
+  }
+
 
   function setDataConjunctuur(data, option, companysize, sbi, callback){
     resultData = {}
@@ -795,8 +925,7 @@
 
   $(function() {
     $("#submitconjunctuur").click( function()
-    {
-      console.log('xxs')
+    { 
      var optieconjuntuur = document.getElementById('optieconjuntuur').value
      var bedrijfsgrootteconjunctuur = document.getElementById('bedrijfsgrootteconjunctuur').value
      var sbiinputconjunctuur  = document.getElementById('sbiinputconjunctuur').value
@@ -809,8 +938,8 @@
     $("#submitoordeel").click( function()
     {
      var optieoordeel = document.getElementById('optieoordeel').value
-     var bedrijfsgrootteconjunctuur = document.getElementById('bedrijfsgrootteconjunctuur').value
-     var sbiinputconjunctuur  = document.getElementById('sbiinputconjunctuur').value
+     var bedrijfsgrootteconjunctuur = document.getElementById('bedrijfsgrootteoordeel').value
+     var sbiinputconjunctuur  = document.getElementById('sbiinputoordeel').value
      var conjunctuurperiode = document.getElementById('conjunctuurperiode').value
      loadConjunctuur(optieoordeel, bedrijfsgrootteconjunctuur, sbiinputconjunctuur, 'oordeel', conjunctuurperiode)
    }
@@ -823,13 +952,41 @@
     $("#submitbelemmeringen").click( function()
     {
 
-     var bedrijfsgrootteconjunctuur = document.getElementById('bedrijfsgrootteconjunctuur').value
-     var sbiinputconjunctuur  = document.getElementById('sbiinputconjunctuur').value
-     var conjunctuurperiode = document.getElementById('conjunctuurperiode').value
+     var bedrijfsgrootteconjunctuur = document.getElementById('bedrijfsgroottebelemmeringen').value
+     var sbiinputconjunctuur  = document.getElementById('sbiinputbelemmeringen').value
+     var conjunctuurperiode = document.getElementById('belemmeringenperiode').value
      loadConjunctuur("Belemmeringen", bedrijfsgrootteconjunctuur, sbiinputconjunctuur, 'belemmeringen', conjunctuurperiode)
    }
 
    );
+
+
+
+    $("#submitvacatures").click( function()
+    {
+
+     var bedrijfsgroottevacatures = document.getElementById('bedrijfsgroottevacatures').value
+     var sbiinputvacatures  = document.getElementById('sbiinputvacatures').value
+     // var vacatureperiode = document.getElementById('vacatureperiode').value
+     var optionvacatures = document.getElementById('vacatureoption').value
+     loadVacatures(bedrijfsgroottevacatures, sbiinputvacatures, optionvacatures, false)
+   }
+
+   );
+
+    $("#addvacatures").click( function()
+    {
+
+     var bedrijfsgroottevacatures = document.getElementById('bedrijfsgroottevacatures').value
+     var sbiinputvacatures  = document.getElementById('sbiinputvacatures').value
+     // var vacatureperiode = document.getElementById('vacatureperiode').value
+     var optionvacatures = document.getElementById('vacatureoption').value
+     loadVacatures(bedrijfsgroottevacatures, sbiinputvacatures, optionvacatures, true)
+   }
+
+   );
+
+
 
   });
 
@@ -879,7 +1036,7 @@
     </div>
 
 
-
+    <br>
     <div class="row">
       <div class="col-md-4"></div>
       <div class="col-md-6">
@@ -903,7 +1060,7 @@
       </div>
 
     </div>
-
+    <br>
     <div class="row">
       <div class="col-md-4"></div>
       <div class="col-md-6">
@@ -923,11 +1080,76 @@
           <option value="2016KW01">2016KW01</option>
         </select>
 
+        <select id='sbiinputoordeel'>
+
+        </select>
+
+        <select id="bedrijfsgrootteoordeel">
+
+        </select>
+
+
 
         <button class="btn btn-primary" id="submitoordeel">Submit Oordeel</button>
+
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-6">
+
+
+        <select id="belemmeringenperiode">
+          <option value="2015KW01">2015KW01</option>
+          <option value="2015KW02">2015KW02</option>
+          <option value="2015KW03">2015KW03</option>
+          <option value="2015KW04">2015KW04</option>
+          <option value="2016KW01">2016KW01</option>
+        </select>
+
+        <select id='sbiinputbelemmeringen'>
+
+        </select>
+
+        <select id="bedrijfsgroottebelemmeringen">
+
+        </select>
+
+
         <button class="btn btn-primary" id="submitbelemmeringen">Submit Belemmeringen</button>
       </div>
     </div>
+    <br>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-6">
+
+<!-- 
+        <select id="vacatureperiode">
+        </select> -->
+        <select id="vacatureoption">
+        </select>
+
+        <select id='sbiinputvacatures'>
+
+        </select>
+
+        <select id="bedrijfsgroottevacatures">
+
+        </select>
+
+
+        <button class="btn btn-primary" id="submitvacatures">Submit Vacatures</button>
+        <button class="btn btn-primary" id="addvacatures"> Voeg toe </button>
+      </div>
+    </div>
+
+    
+
+    
+
+
 
     <div class="row">
       <div class="col-md-6">
@@ -971,6 +1193,12 @@
       </div>
     </div>
 
+    <div class="row">
+      <div class="col-md-6">
+        <div class="chart" id="chartvacatures"></div>
+      </div>
+    </div>
+
 
   </body>
   </html>
@@ -978,7 +1206,7 @@
 
 
 
-
+￼ 
 
 
 
