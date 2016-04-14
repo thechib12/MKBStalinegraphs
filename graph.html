@@ -532,7 +532,7 @@
           columns:dataSetCumulatief
         },
 
-        grid: {
+        grid: { 
           y: {
             lines: [{value:0}]
           }
@@ -548,9 +548,6 @@
         });
 
     }   
-
-
-
 
     var drawConjunctuurGraphOordeel = function(data, periode){
 
@@ -627,7 +624,6 @@
     }
     dataset = [dataGeen, dataOnvoldoendeVraag, dataTekort, dataProductie, dataFinancieel, dataWeer, dataAnders]
     console.log(dataset)
-
     var chart6 = c3.generate({
       data: {
         columns:dataset,
@@ -732,12 +728,15 @@
       data = data.value
       setDataConjunctuur(data, option, companysize, sbi, function(result){
         if(type == "oordeel"){
+          
           drawConjunctuurGraphOordeel(result, periode)
         } else if(type == "belemmeringen") {
           drawBelemmeringen(result, periode)
 
         } else if(type == 'conjunctuur'){
           drawConjunctuurGraph(result)  
+        } else if(type == 'oordeel-trend'){
+          drawConjunctuurGraphOordeelTrend(result)
         }
 
       })
@@ -986,6 +985,19 @@
 
    );
 
+  $("#submitoordeeltrend").click( function()
+    {
+     var optieoordeel = document.getElementById('optieoordeel').value
+     var bedrijfsgrootteconjunctuur = document.getElementById('bedrijfsgrootteoordeel').value
+     var sbiinputconjunctuur  = document.getElementById('sbiinputoordeel').value
+     var conjunctuurperiode = document.getElementById('conjunctuurperiode').value
+     loadConjunctuur(optieoordeel, bedrijfsgrootteconjunctuur, sbiinputconjunctuur, 'oordeel-trend', conjunctuurperiode)
+   }
+
+   );
+
+
+
 
 
   });
@@ -1091,6 +1103,7 @@
 
 
         <button class="btn btn-primary" id="submitoordeel">Submit Oordeel</button>
+        <button class="btn btn-primary"id="submitoordeeltrend">Submit oordeel trend</button>
 
       </div>
     </div>
@@ -1194,6 +1207,11 @@
     </div>
 
     <div class="row">
+      <div class="col-md-6" id="chartoordeeltrend">
+        <div class="chart" id="chartoordeeltrend">
+            
+        </div>
+      </div>
       <div class="col-md-6">
         <div class="chart" id="chartvacatures"></div>
       </div>
